@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/dadosEntrada.css" />
+    <link rel="stylesheet" href="../styles/globalStyle.css" />
+  </head>
+  <body class="page-dados">
+    <header>
+      <div class="logo">
+        <img src="../assets/img/Ellipse 1.png" alt="" />
+        <img src="../assets/img/Kenzie Empresas.png" alt="" />
+      </div>
+      <button class="options-button">
+        <img src="../assets/img/Vector.png" alt="" />
+      </button>
+      <div class="section-header">
+        <button id="home-button" class="return-button">Home</button>
+        <button id="register-button__two" class="entry-button">Cadastro</button>
+      </div>
+    </header>
+    <main class="cadastro">
+      <form class="form" id="login-form">
+        <span class="name">Login</span>
+        <span class="descricao">Preencha os campos para realizar login</span>
+        <div class="inputs">
+          <input
+            class="field"
+            name="email"
+            type="email"
+            placeholder="Seu e-mail"
+          />
+          <input
+            class="field"
+            name="password"
+            type="password"
+            placeholder="Sua senha"
+          />
+        </div>
+        <div class="footer">
+          <button class="entry-button" type="submit">Login</button>
+          <span class="descricao">ou</span>
+          <button type="button" id="register-button" class="return-button">
+            Cadastre-se
+          </button>
+        </div>
+      </form>
+      <img src="../assets/img/change.png" alt="">
+    </main>
+    <script type="module" src="../scripts/login.js"></script>
+  </body>
+</html>

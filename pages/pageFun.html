@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/globalStyle.css" />
+    <link rel="stylesheet" href="../styles/pageFun.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <img src="../assets/img/Ellipse 1.png" alt="" />
+        <img src="../assets/img/Kenzie Empresas.png" alt="" />
+      </div>
+      <button class="button-logout">Logout</button>
+    </div>
+    <section class="info-employee">
+      <div class="section-header"></div>
+    </section>
+    <main class="content-fun">
+      <div class="page-hires">
+        <span class="hires">Você ainda não foi contratado</span>
+      </div>
+      <dialog class="modal-changeInfo">
+        <form class="form-modal" method="dialog">
+          <div class="header-modal">
+            <span class="name-modal">Editar Perfil</span>
+            <button class="close-modal">X</button>
+          </div>
+          <div class="entry">
+            <input class="entry-data data" type="text" placeholder="Seu nome" />
+            <input class="entry-data data" type="email" placeholder="Seu e-mail" />
+            <input class="entry-data data" type="password" placeholder="Sua senha" />
+            <button class="button-save__change data" type="submit">Editar perfil</button>
+
+          </div>
+        
+        </form>
+      </dialog>
+    </main>
+    <script type="module" src="../scripts/validator.js"></script>
+    <script type="module" src="../scripts/pageFun.js"></script>
+  </body>
+</html>

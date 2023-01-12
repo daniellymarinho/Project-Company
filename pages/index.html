@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kenzie Empresas</title>
+    <link rel="stylesheet" href="../styles/globalStyle.css" />
+    <link rel="stylesheet" href="../styles/index.css" />
+  </head>
+  <body>
+    <header class="section-header">
+      <div class="section-logo">
+        <img src="../assets/img/Ellipse 1.png" alt="" />
+        <img src="../assets/img/Kenzie Empresas.png" alt="" />
+      </div>
+  
+      <div class="">
+        <button class="button-option" data-toggle="dropdown">
+          <img src="../assets/img/Vector.png" alt="" />
+        </button>
+        <div class="entry-buttons">
+          <button class="input-login input">Login</button>
+          <button class="input-register input">Cadastro</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="section-list__companies">
+      <img class="img-home__Page" src="../assets/img/homePage.png" alt="" />
+      <div class="companies">
+        <div class="section-select__sector">
+          <select name="" id="select-sector">
+            <option class="option-field" value="">Selecionar Setor</option>
+            <option class="option-field" value="Alimenticio">
+              Alimenticio
+            </option>
+            <option class="option-field" value="Varejo">Varejo</option>
+            <option class="option-field" value="Textil">Textil</option>
+            <option class="option-field" value="Manufatura">Manufatura</option>
+            <option class="option-field" value="Aeroespacial">
+              Aeroespacial
+            </option>
+            <option class="option-field" value="Automotiva">Automotiva</option>
+            <option class="option-field" value="TI">TI</option>
+            <option class="option-field" value="Atacado">Atacado</option>
+          </select>
+        </div>
+        <ul class="list-companies"></ul>
+      </div>
+    </main>
+
+    <script type="module" src="../scripts/index.js"></script>
+  </body>
+</html>

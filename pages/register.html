@@ -14,19 +14,42 @@
         <img src="../assets/img/Ellipse 1.png" alt="" />
         <img src="../assets/img/Kenzie Empresas.png" alt="" />
       </div>
-      <button class="options-button"><img src="../assets/img/Vector.png" alt="" /></button>
-      <div class="section-header">
-        <button id="home-page" class="return-button">Home</button>
-        <button id="login-button__two" class="entry-button">login</button>
+      <div class="buttons-media">
+        <button  class="button_home">Home</button>
+        <button  class="button_register">Login</button>
+      </div>
+      <div class="menu">
+        <button class="options-button">
+          <img src="../assets/img/Vector.png" alt="" />
+        </button>
+        <div class="section-header">
+          <button id="home-page" class="return-button ">Home</button>
+          <button id="login-button__two" class="entry-button ">login</button>
+        </div>
       </div>
     </header>
     <main class="cadastro">
       <form class="form" id="user-form">
         <span class="name">Cadastre-se</span>
         <div id="data" class="inputs">
-          <input class="field" name="username" type="text" placeholder="Seu nome" />
-          <input class="field" name="email" type="email" placeholder="Seu e-mail" />
-          <input class="field" name="password" type="password" placeholder="Sua senha" />
+          <input
+            class="field"
+            name="username"
+            type="text"
+            placeholder="Seu nome"
+          />
+          <input
+            class="field"
+            name="email"
+            type="email"
+            placeholder="Seu e-mail"
+          />
+          <input
+            class="field"
+            name="password"
+            type="password"
+            placeholder="Sua senha"
+          />
           <select class="field" name="professional_level" id="">
             <option value="">Nível profissional</option>
             <option value="estágio">estágio</option>
@@ -37,11 +60,13 @@
         </div>
         <div class="footer">
           <button class="entry-button" type="submit">Cadastre-se</button>
-          <button type="button" id="reset-button" class="return-button" >Retornar</button>
+          <button type="button" id="reset-button" class="return-button">
+            Retornar
+          </button>
         </div>
       </form>
-     
     </main>
+
     <script type="module" src="../scripts/register.js"></script>
   </body>
 </html>

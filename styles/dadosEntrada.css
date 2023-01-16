@@ -12,6 +12,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0px 10px;
+  gap: 8rem;
 }
 
 .logo {
@@ -23,6 +24,7 @@ header {
 .options-button {
   background-color: var(--baseColor-2);
   border: 1px solid var(--baseColor-2);
+  
 }
 
 .form {
@@ -50,7 +52,7 @@ header {
  
 }
 
-.entry-button {
+.entry-button, .button_register {
   height: 40px;
   padding: 0px 10px;
   border: 1px solid var(--brandColor-1);
@@ -62,7 +64,7 @@ header {
   width: 100%;
 }
 
-.return-button {
+.return-button, .button_home {
   height: 40px;
   padding: 0px 10px;
   border: 1px solid var(--brandColor-1);
@@ -93,6 +95,30 @@ header {
 }
 
 .section-header{
+  position: absolute;
+  overflow: hidden;
+  right: 0.2rem;
+  z-index: 1;
+  gap: 10px;
+  background-color: var(--baseColor-2);
+  top: 3rem;
+  padding: 2rem 6rem;
+  display: none;
+  justify-content: center;
+  width: 100vw;
+}
+
+
+.menu{
+  display: flex;
+
+}
+
+.show-Menu{
+  display: flex;
+}
+
+.buttons-media{
   display: none;
 }
 
@@ -114,6 +140,13 @@ header {
   .form{
     width: 500px;
     height: 490px;
+  }
+  .buttons-media{
+    display: flex;
+    gap: 10px;
+  }
+  .menu{
+    display: none;
   }
   
 }

@@ -37,3 +37,7 @@ export const deleteUserHiddenId = document.querySelector(
 );
 export const selectCompany = document.querySelector("#select-companies");
 export const buttonCloseEditDepartment = document.querySelector(".close-button-editModal")
+export const divTextDelete = document.querySelector(".modal-delete-department__text")
+export const selectUser = document.querySelector("#select-user")
+export const editDepartmentHiddenInput = document.querySelector(".hiddens-edit__department")
+export const  deleteUserText = document.querySelector(".delete-user__text")

@@ -1,28 +1,30 @@
-.section-header{
+.section-header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #A8A8A8;
+  align-items: center;
+  border-bottom: 1px solid #a8a8a8;
   padding: 1rem;
+  gap: 8rem;
 }
 
-.section-logo{
+.section-logo {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.button-option{
-  background-color: var( --baseColor-2);
+.button-option {
+  background-color: var(--baseColor-2);
   border: 1px solid var(--baseColor-2);
 }
 
-.section-select__sector{
+.section-select__sector {
   display: flex;
   justify-content: center;
   margin: 30px 10px;
 }
 
-#select-sector{
+#select-sector {
   background-color: var(--brandColor-1);
   color: var(--baseColor-2);
   font-size: 18px;
@@ -31,13 +33,13 @@
   padding: 10px 60px;
 }
 
-.list-companies{
+.list-companies {
   display: flex;
-  background-color: #F8F8F8;
-  overflow-x: auto; 
+  background-color: #f8f8f8;
+  overflow-x: auto;
 }
 
-.item-list{
+.item-list {
   display: flex;
   flex-direction: column;
   background-color: var(--baseColor-2);
@@ -45,109 +47,143 @@
   gap: 4rem;
   padding: 10px 69px;
   align-items: center;
-   justify-content: center;
- 
+  justify-content: center;
 }
 
-.name-company{
+.name-company {
   font-size: 20px;
   font-weight: 700;
-  font-family: var( --font-2);
+  font-family: var(--font-2);
   width: 5rem;
-
 }
 
-.description-item{
+.description-item {
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
 }
 
-.opening-hours, .sector{
+.opening-hours,
+.sector {
   font-size: 16px;
   font-weight: 400;
   font-family: var(--font-2);
 }
 
-.sector{
+.sector {
   border: 1px solid var(--brandColor-1);
   color: var(--brandColor-1);
   border-radius: 255px;
   padding: 10px;
-
 }
 
-.img-home__Page{
+.img-home__Page {
   display: none;
 }
 
-@media(min-width: 800px){
-  .list-companies{
+.input-login, .media-button__login{
+  border: 1px solid var(--brandColor-1);
+  background-color: var(--baseColor-2);
+  color: var(--brandColor-1);
+ 
+}
+.input-register, .media-button__register{
+  color: var(--baseColor-2);
+  background-color: var(--brandColor-1);
+  border: 1px solid var(--brandColor-1);
+}
+
+
+.menu {
+  position: relative;
+}
+
+.entry-buttons {
+  position: absolute;
+  overflow: hidden;
+  right: 0.2rem;
+  z-index: 1;
+  gap: 10px;
+  background-color: var(--baseColor-2);
+  top: 2rem;
+  padding: 2rem 6rem;
+  display: none;
+  justify-content: center;
+  width: 100vw;
+}
+
+.show-button__menu {
+  display: flex;
+}
+
+.input {
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.media-buttons{
+  display: none;
+}
+
+@media (min-width: 800px) {
+  .list-companies {
     flex-direction: column;
     overflow-y: auto;
     height: 580px;
     width: 80%;
-    
   }
-  .item-list{
+  .item-list {
     border-bottom: 1px solid var(--brandColor-1);
     align-items: flex-start;
     height: 135px;
     gap: 5px;
   }
-  .button-option{
+  .button-option {
     display: none;
   }
-  .section-list__companies{
+  .section-list__companies {
     display: flex;
-    width: 100%;
     margin: 20px 30px;
     gap: 1rem;
-    align-items: center;
+
     justify-content: center;
   }
-  .img-home__Page{
+  .img-home__Page {
     display: block;
     height: 680px;
   }
-  .companies{
+  .companies {
     height: 680px;
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
   }
-  .section-select__sector{
+  .section-select__sector {
     margin: 0;
-   
   }
-  #select-sector{
-    padding: 1rem  12.7rem;
+  #select-sector {
+  
+    padding: 1rem 11.8rem;
   }
-  .entry-buttons{
+  .section-header {
+    padding: 15px 40px;
+  
+  }
+  .entry-buttons {
+    position: static;
+    padding: 0;
+    width: 100%;
+  }
+  .media-buttons{
     display: flex;
     gap: 20px;
-    
+    position: relative;
+    left: 20rem;
   }
-  .input-login{
-    border: 1px solid var(--brandColor-1);
-    background-color: var(--baseColor-2);
-    color: var(--brandColor-1);
-  }
-  .input-register{
-    color: var(--baseColor-2);
-    background-color: var(--brandColor-1);
-    border: 1px solid var(--brandColor-1);
-  }
-  .input{
+  .media-button__login, .media-button__register{
+    padding: 10px 20px;
     font-size: 18px;
-    font-weight: 700;
-    font-family: var(--font-3);
-    padding: 10px 30px;
-  }
-  .section-header{
-    padding: 15px 40px;
   }
 }

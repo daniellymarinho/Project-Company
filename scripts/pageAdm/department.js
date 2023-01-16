@@ -13,32 +13,44 @@ import {
   buttonConfirmDeleteDepartment,
   modalCreateDepartment,
   selectCompany,
-  buttonCloseEditDepartment
+  buttonCloseEditDepartment,
+  divTextDelete,
+  selectUser,
+  editDepartmentHiddenInput,
 } from "./constants.js";
 import {
   dismissEmployee,
   editDepartment,
   deleteDepartment,
-  userOfDepartment,
+  userWithoutDepartment,
   getAllCompanyDepartment,
   hireDepartment,
   createDepartments,
   getAllDepartments,
+  getEmoloyeesByDepartment,
+  getAllUsers,
 } from "../requests.js";
 import { getSelectedCompany } from "./company.js";
 
 buttonCloseDelete.addEventListener("click", () => {
   deleteDepartmentHiddenInput.value = "";
   modalDeleteDepartment.close();
+  divTextDelete.innerHTML = "";
 });
 
 buttonConfirmDeleteDepartment.addEventListener("click", async () => {
   await deleteDepartment(deleteDepartmentHiddenInput.value);
   const result = await getAllDepartments();
   renderDepartments(result);
-  modalDeleteDepartment.close();
   deleteDepartmentHiddenInput.value = "";
+
+  modalDeleteDepartment.close();
 });
+const closeViewDepartment = document.querySelector(".close-view__department");
+
+closeViewDepartment.addEventListener("click", () =>
+  modalViewDepartment.close()
+);
 
 function createDepartment({ name, description, companies, uuid }) {
   const itemDepartment = document.createElement("li");
@@ -70,42 +82,24 @@ function createDepartment({ name, description, companies, uuid }) {
   changeButton.classList.add("change-button");
   deleteButton.classList.add("delete-button");
   buttonsDepartment.classList.add("buttons-department");
+  textDeleteDepartment.classList.add("text-modal__delete");
 
   changeButton.addEventListener("click", () => {
     modalChangeDepartment.showModal();
-
+    editDepartmentHiddenInput.value = uuid;
     buttonCloseEditDepartment.addEventListener("click", () => {
-      modalChangeDepartment.close()
-    })
-    
+      modalChangeDepartment.close();
+    });
   });
   deleteButton.addEventListener("click", () => {
     deleteDepartmentHiddenInput.value = uuid;
-    modalDeleteDepartment.appendChild(textDeleteDepartment);
+    divTextDelete.appendChild(textDeleteDepartment);
     modalDeleteDepartment.showModal();
-    buttonCloseDelete.addEventListener("click", () => {
-      modalDeleteDepartment.close();
-    });
   });
 
-  showDetailsModalButton.addEventListener("click", async (event) => {
+  showDetailsModalButton.addEventListener("click", async () => {
     modalViewDepartment.showModal();
-
-    await getAllCompanyDepartment(companies.uuid);
-    departmentName.innerText = name;
-    descriptionDepartment.innerText = description;
-    companyNameModal.innerText = companies.name;
-    hireUserHiddenInput.value = uuid;
-    const response = await userOfDepartment();
-    renderUserOfDepartment(response);
-
-    const closeViewDepartment = document.querySelector(
-      ".close-view__department"
-    );
-
-    closeViewDepartment.addEventListener("click", () =>
-      modalViewDepartment.close()
-    );
+    await renderDetailsModal({ companies, name, description, uuid });
   });
 
   showDetailsModalButton.appendChild(viewDepartment);
@@ -121,22 +115,59 @@ function createDepartment({ name, description, companies, uuid }) {
   listDepartment.appendChild(itemDepartment);
 }
 
+async function renderDetailsModal({ companies, name, description, uuid }) {
+  selectUser.innerHTML = "";
+
+  await getAllCompanyDepartment(companies.uuid);
+  departmentName.innerText = name;
+  descriptionDepartment.innerText = description;
+  companyNameModal.innerText = companies.name;
+  hireUserHiddenInput.value = uuid;
+  const response = await getAllUsers();
+
+  renderUserOfDepartment(
+    response.filter((user) => user.department_uuid === uuid)
+  );
+  const notSelected = document.createElement("option");
+  notSelected.innerText = "Selecionar Usuário";
+  notSelected.value = null;
+  notSelected.selected = true;
+  selectUser.appendChild(notSelected);
+  selectUser.append(
+    ...(await userWithoutDepartment()).map((user) => {
+      const opt = document.createElement("option");
+      opt.innerText = user.username;
+      opt.value = user.uuid;
+      return opt;
+    })
+  );
+}
+
 function renderUserOfDepartment(array) {
   const listUsersOf = document.querySelector(".list-user__department");
 
   listUsersOf.innerHTML = "";
 
-  array.forEach((userOf) => {
-    listUsersOf.append(createUserOfDepartment(userOf));
+  array.forEach((userOutOfWork) => {
+    listUsersOf.append(createUserOfDepartment(userOutOfWork));
   });
 }
 
-function createUserOfDepartment({
-  username,
-  professional_level,
-  uuid,
-  department_uuid,
-}) {
+hireButton.addEventListener("click", async () => {
+  const hire = {
+    user_uuid: selectUser.value,
+    department_uuid: hireUserHiddenInput.value,
+  };
+
+  await hireDepartment(hire);
+  const [department] = await getAllDepartments().then((response) =>
+    response.filter(
+      (department) => department.uuid === hireUserHiddenInput.value
+    )
+  );
+  renderDetailsModal(department);
+});
+function createUserOfDepartment({ username, professional_level, uuid, department_uuid }) {
   const userItem = document.createElement("li");
   const userName = document.createElement("span");
   const professionalLevel = document.createElement("span");
@@ -153,14 +184,12 @@ function createUserOfDepartment({
 
   buttonOfUser.addEventListener("click", async () => {
     await dismissEmployee(uuid);
-  });
-
-  hireButton.addEventListener("click", async () => {
-    const hire = {
-      user_uuid: hireUserHiddenInput.value,
-      department_uuid,
-    };
-    await hireDepartment(hire);
+    const [department] = await getAllDepartments().then((response) =>
+      response.filter(
+        (department) => department.uuid === department_uuid
+      )
+    );
+    renderDetailsModal(department);
   });
 
   userItem.append(userName, professionalLevel, buttonOfUser);
@@ -190,6 +219,7 @@ export function initializeCreateDepartmentForm() {
   );
 
   const inputs = document.querySelectorAll(".entry");
+
   createNewDepartment.addEventListener("click", async () => {
     const newDepartment = {};
 
@@ -202,3 +232,42 @@ export function initializeCreateDepartmentForm() {
     modalCreateDepartment.close();
   });
 }
+
+const saveEdit = document.querySelector(".save-edit");
+const dataInputs = document.querySelectorAll(".data");
+
+saveEdit.addEventListener("click", async () => {
+  const infoEdit = {};
+
+  dataInputs.forEach((input) => {
+    if (input.value) infoEdit[input.name] = input.value;
+  });
+
+  const [department] = (await getAllDepartments()).filter(
+    (department) => department.uuid === editDepartmentHiddenInput.value
+  );
+  if (
+    !infoEdit.company_uuid ||
+    infoEdit.company_uuid === department.company__uuid
+  ) {
+    await editDepartment(infoEdit, editDepartmentHiddenInput.value);
+  } else {
+    const users = [];
+    for (const user of await getAllUsers()) {
+      if (user.department_uuid !== editDepartmentHiddenInput.value) continue;
+      users.push(user);
+    }
+    const newInfo = { ...department, ...infoEdit };
+    await deleteDepartment(editDepartmentHiddenInput.value);
+    const newDepartment = await createDepartments(newInfo);
+    for (const user of users)
+      await hireDepartment({
+        user_uuid: user.uuid,
+        department_uuid: newDepartment.uuid,
+      });
+  }
+
+  const edit = await getAllDepartments();
+  renderDepartments(edit);
+  modalChangeDepartment.close();
+});

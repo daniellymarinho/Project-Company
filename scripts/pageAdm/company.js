@@ -30,3 +30,4 @@ export async function renderSelectCompany() {
 export function getSelectedCompany() {
   return selectedCompany;
 }
+

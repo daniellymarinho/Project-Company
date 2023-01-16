@@ -75,7 +75,7 @@ export async function getEmployeeInfo() {
 }
 
 /*Listar todos os funcionários do mesmo departamento*/
-export async function getEmoloyesBySector() {
+export async function getEmoloyeesByDepartment() {
   const { token } = getUser();
   const employesBySector = await fetch(
     "http://localhost:6278/users/departments/coworkers",
@@ -249,7 +249,7 @@ export async function getAllUsers() {
 }
 
 /*Usuários sem departamentos*/
-export async function userOfDepartment() {
+export async function userWithoutDepartment() {
   const { token } = getUser();
   const userOf = await fetch("http://localhost:6278/admin/out_of_work", {
     method: "GET",
@@ -262,7 +262,7 @@ export async function userOfDepartment() {
 }
 
 /* Atualizar informações do funcionário */
-export async function changeInfoEmployee(id) {
+export async function changeInfoEmployee(data,id ) {
   const { token } = getUser();
   const changeInfo = await fetch(
     `http://localhost:6278/admin/update_user/${id}`,
@@ -272,6 +272,7 @@ export async function changeInfoEmployee(id) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify(data),
     }
   );
   return await changeInfo.json();
@@ -280,14 +281,14 @@ export async function changeInfoEmployee(id) {
 /*Deletar usuário*/
 export async function deleteUser(id) {
   const { token } = getUser();
-  const offUser = fetch(`http://localhost:6278/admin/delete_user/${id}`, {
+  await fetch(`http://localhost:6278/admin/delete_user/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
-  return await offUser.json();
+ 
 }
 
 /*Verificar o tipo de usuário*/

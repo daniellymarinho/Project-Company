@@ -150,7 +150,9 @@
 
 .modal-change__user,
 .create-department,
-.change-department
+.change-department,
+.modal-delete__department,
+.modal-delete__user
  {
   position: relative;
   left: 30rem;
@@ -166,6 +168,21 @@
   top: 11rem ;
   left: 20rem;
   border: 1px solid var(--baseColor-2);
+}
+
+.modal-delete__department{
+  width: 733px;
+  padding: 0px 10px;
+  
+}
+
+.modal-delete-department__text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65%;
+  text-align: center;
+  
 }
 
 
@@ -189,15 +206,34 @@
  
 }
 
+.text-modal__delete, .delete-user__text{
+  font-size: 28px;
+  font-weight: 700;
+  font-family: var(--font-1);
+}
+
 .button-close__user,
 .close-modal__create,
 .close-button-editModal, 
-.close-view__department {
+.close-view__department,
+.close-delete__department,
+.close-delete {
   background-color: var(--baseColor-2);
   border: 1px solid var(--baseColor-2);
   width: 17px;
   height: 17px;
   font-size: 20px;
+  font-family: var(--font-2);
+}
+
+.delete-department, .button-delete-user{
+  background-color: #4BA036;
+  border: 1px solid #4BA036;
+  color: var(--baseColor-2);
+  height: 48px;
+  width: 65%;
+  font-size: 18px;
+  font-weight: 700;
   font-family: var(--font-2);
 }
 
@@ -214,7 +250,7 @@
 #select-professional__leval,
 .entry,
 #select-companies-department,
-.input {
+.data {
   border: 1px solid #a8a8a8;
   color: #a8a8a8;
   font-size: 17px;
@@ -225,7 +261,7 @@
   
 }
 
-.button-edite__user,
+.button-edit__user,
 .button-create__department,
 .save-edit {
   background-color: var(--brandColor-1);

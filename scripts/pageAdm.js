@@ -1,3 +1,4 @@
+import { deleteUserText } from "./pageAdm/constants.js";
 import { renderDepartmentsContent } from "./pageAdm/index.js";
 import {
   getAllUsers,
@@ -5,6 +6,7 @@ import {
   createDepartments,
   getAllCompanies,
   deleteUser,
+  changeInfoEmployee,
 } from "./requests.js";
 
 verifyUser().then(({ is_admin }) => {
@@ -19,15 +21,8 @@ const modalChangeUser = document.querySelector(".modal-change__user");
 const modalDeleteUser = document.querySelector(".modal-delete__user");
 const modalcreate = document.querySelector(".create-department");
 const buttonCreate = document.querySelector(".create-button");
-const modalDeleteDepartment = document.querySelector(
-  ".modal-delete__department"
-);
 const listUsers = document.querySelector(".registered-users");
 const modalViewDepartment = document.querySelector(".modal-view__department");
-const departmentName = document.querySelector(".department-name ");
-const descriptionDepartment = document.querySelector(".description-deartment");
-const companyNameModal = document.querySelector(".company-name");
-const hireButton = document.querySelector(".hire-button");
 const buttonConfirmDeleteDepartment =
   document.querySelector(".delete-department");
 const buttonDeleting = document.querySelector(".button-delete-user");
@@ -40,15 +35,26 @@ const createDepartmentHiddenInput = document.querySelector(
   ".hidden-create__department"
 );
 const deleteUserHiddenId = document.querySelector(".hidden-delete__user");
+const editUserHidden = document.querySelector(".hidden-edit__user");
+const optionsEditUser = document.querySelectorAll(
+  ".modal-change__user select.field"
+);
+const buttonEditUser = document.querySelector(".button-edit__user");
 
+const closeDelete = document.querySelector(".close-delete");
 function renderRegisteredUsers(array) {
   listUsers.innerHTML = "";
-  array.forEach(createRegisteredUsers);
-}
+  
+    array.forEach(createRegisteredUsers);
+  }
+
 
 buttonDeleting.addEventListener("click", async () => {
   await deleteUser(deleteUserHiddenId.value);
+  const response = await getAllUsers();
+  renderRegisteredUsers(response);
   deleteUserHiddenId.value = "";
+  modalDeleteUser.close();
 });
 
 function createRegisteredUsers({ username, professional_level, uuid }) {
@@ -61,11 +67,11 @@ function createRegisteredUsers({ username, professional_level, uuid }) {
   const buttonDeleteUser = document.createElement("button");
   const changeUser = document.createElement("img");
   const deleteUserimg = document.createElement("img");
-  const tost = document.createElement("span");
+  const toast = document.createElement("span");
 
   userName.innerText = username;
   professionalLevel.innerText = professional_level;
-  tost.innerText = `Realmente deseja remover o usuário ${username} ?`;
+  toast.innerText = `Realmente deseja remover o usuário ${username} ?`;
   changeUser.src = "../assets/img/change.png";
   deleteUserimg.src = "../assets/img/lixo.png";
 
@@ -78,18 +84,20 @@ function createRegisteredUsers({ username, professional_level, uuid }) {
 
   buttonChangeUser.addEventListener("click", () => {
     modalChangeUser.showModal();
-
-    closeModalUser();
+    editUserHidden.value = uuid;
   });
 
-  buttonDeleteUser.addEventListener("click", () => {
+  closeModalEditUser();
+
+  buttonDeleteUser.addEventListener("click", async () => {
     modalDeleteUser.showModal();
     deleteUserHiddenId.value = uuid;
+
+    deleteUserText.appendChild(toast);
 
     closeDeleteUser();
   });
 
-  modalDeleteUser.append(tost);
   divButtons.append(buttonChangeUser, buttonDeleteUser);
   buttonChangeUser.append(changeUser);
   buttonDeleteUser.append(deleteUserimg);
@@ -114,21 +122,19 @@ function logout() {
 }
 logout();
 
-function closeModalUser() {
+function closeModalEditUser() {
   const buttonClose = document.querySelector(".button-close__user");
 
-  buttonClose.addEventListener("click", () => {
+  buttonClose.addEventListener("click", async () => {
     modalChangeUser.close();
   });
 }
 
 function closeDeleteUser() {
-  const closeDelete = document.querySelector(".close-delete");
-
   closeDelete.addEventListener("click", async () => {
-    const response = await getAllUsers();
-    renderRegisteredUsers(response);
     deleteUserHiddenId.value = "";
+    deleteUserText.innerHTML = "";
+
     modalDeleteUser.close();
   });
 }
@@ -152,7 +158,7 @@ function closeModalChangeDepartment() {
 }
 
 function closeDeleteDepartment() {
-  buttonCloseDelete.addEventListener
+  buttonCloseDelete.addEventListener;
 }
 
 function closeModalViewDepartment() {
@@ -167,6 +173,7 @@ function renderListCompany(array) {
   array.forEach(createOptionCompany);
 }
 
+/* Criação de opções para criação de departamento*/
 function createOptionCompany({ name, uuid }) {
   const selectCompany = document.querySelector("#select-companies-department");
 
@@ -179,3 +186,35 @@ function createOptionCompany({ name, uuid }) {
 }
 
 getAllCompanies().then(renderListCompany);
+
+function renderListEditeCompany(array) {
+  array.forEach(createOptionEditDepartment);
+}
+
+function createOptionEditDepartment({ name, uuid }) {
+  const selectEditDepartment = document.querySelector(
+    "#select-companies-edit__department"
+  );
+
+  const options = document.createElement("option");
+
+  options.value = uuid;
+  options.innerText = name;
+
+  selectEditDepartment.append(options);
+}
+
+getAllCompanies().then(renderListEditeCompany);
+
+buttonEditUser.addEventListener("click", async () => {
+  const newInfo = {};
+
+  optionsEditUser.forEach((input) => {
+    if (input.value) newInfo[input.name] = input.value;
+  });
+  await changeInfoEmployee(newInfo, editUserHidden.value);
+  const users = await getAllUsers();
+  listUsers.innerHTML = "";
+  users.forEach(createRegisteredUsers);
+  modalChangeUser.close();
+});

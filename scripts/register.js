@@ -25,9 +25,13 @@ form.addEventListener("submit", async (event) => {
 const button = document.querySelector("#reset-button")
 const buttonLogin = document.querySelector("#login-button__two")
 const homePage = document.querySelector("#home-page")
+const buttonHome = document.querySelector(".button_home")
+const buttonMediaRegister = document.querySelector(".button_register")
+const menu = document.querySelector(".section-header")
+const openMenu = document.querySelector(".options-button")
 
 button.addEventListener("click", () => {
-  window.location.replace('/pages/index.html')
+  window.location.replace('/index.html')
 })
 
 buttonLogin.addEventListener("click", () => {
@@ -35,5 +39,17 @@ buttonLogin.addEventListener("click", () => {
 })
 
 homePage.addEventListener("click", () => {
-  window.location.replace('/pages/index.html')
+  window.location.replace('/index.html')
+})
+
+openMenu.addEventListener("click", () => {
+  menu.classList.toggle("show-Menu")
+  })
+
+buttonHome.addEventListener("click", () => {
+  window.location.replace('/index.html')
+})
+
+buttonMediaRegister.addEventListener("click", () => {
+  window.location.replace('/pages/register.html')
 })

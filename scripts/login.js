@@ -37,16 +37,31 @@ form.addEventListener("submit", async (event) => {
 const buttonRegister = document.querySelector("#register-button")
 const homeButton = document.querySelector("#home-button")
 const secondRegisterButton = document.querySelector("#register-button__two")
+const openMenu = document.querySelector(".options-button")
+const menu = document.querySelector(".section-header")
+const buttonHome = document.querySelector(".button_home")
+const buttonMediaRegister = document.querySelector(".button_register")
 
 buttonRegister.addEventListener("click", () => {
   window.location.replace('/pages/register.html')
 })
 
 homeButton.addEventListener("click", () => {
-  window.location.replace('/pages/index.html')
+  window.location.replace('/index.html')
 })
 
 secondRegisterButton.addEventListener("click", () => {
   window.location.replace('/pages/register.html')
 })
 
+openMenu.addEventListener("click", () => {
+menu.classList.toggle("show-Menu")
+})
+
+buttonHome.addEventListener("click", () => {
+  window.location.replace('/index.html')
+})
+
+buttonMediaRegister.addEventListener("click", () => {
+  window.location.replace('/pages/register.html')
+})

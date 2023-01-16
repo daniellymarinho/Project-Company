@@ -21,75 +21,115 @@
         <div class="section-department">
           <span class="name-select__companies">Departamentos</span>
 
-          <select name="" id="select-companies">
-          </select>
+          <select name="" id="select-companies"></select>
           <button class="create-button">+ Criar</button>
         </div>
         <div class="setion-department">
           <ul class="list-department"></ul>
         </div>
-        
+
         <dialog class="create-department">
           <div class="header-create__department">
             <span class="name-create__department">Criar Departamento</span>
             <button class="close-modal__create">X</button>
           </div>
           <div class="main-department">
-            <input name="name"  class="entry" type="text" placeholder="Nome do departamento" />
-            <input name="description" class="entry" type="text" placeholder="Descrição" />
-            <select class="entry" name="company_uuid" id="select-companies-department">
-          <option value="">Selecionar empresa</option>
+            <input
+              name="name"
+              class="entry"
+              type="text"
+              placeholder="Nome do departamento"
+            />
+            <input
+              name="description"
+              class="entry"
+              type="text"
+              placeholder="Descrição"
+            />
+            <select
+              class="entry"
+              name="company_uuid"
+              id="select-companies-department"
+            >
+              <option value="">Selecionar empresa</option>
             </select>
-            <button class="button-create__department">Criar o departamento</button>
-            <input type="hidden" name="create-department__id" class="hiddesn-create__department">
-
+            <button class="button-create__department">
+              Criar o departamento
+            </button>
+            <input
+              type="hidden"
+              name="create-department__id"
+              class="hiddesn-create__department"
+            />
           </div>
-         
         </dialog>
         <dialog class="change-department">
           <div class="header-edit__department">
             <span class="name-edit__department">Editar Departamento</span>
             <button class="close-button-editModal">X</button>
           </div>
-         <div class="main-edit__department">
-          <input name="name" class="input" type="text" placeholder="Nome do departamento" />
-          <input id="description-department" name="description" class="input" type="text" placeholder="Descrição" />
-          <select class="input" name="company_uuid" >
-          </select>
-          <button class="save-edit">Salvar alterações</button>
-
-         </div>
-          
+          <div class="main-edit__department">
+            <input
+              name="name"
+              class="data"
+              type="text"
+              placeholder="Nome do departamento"
+            />
+            <input
+              id="description-department"
+              name="description"
+              class="data"
+              type="text"
+              placeholder="Descrição"
+            />
+            <select
+              id="select-companies-edit__department"
+              class="data"
+              name="company_uuid"
+            >
+              <option value="">Selecionar empresa</option>
+            </select>
+            <button class="save-edit">Salvar alterações</button>
+            <input
+              type="hidden"
+              name="edit-department__id"
+              class="hiddens-edit__department"
+            />
+          </div>
         </dialog>
         <dialog class="modal-delete__department">
           <button class="close-delete__department">X</button>
-          <input type="hidden" name="department-id" class="hidden-delete__department">
+          <input
+            type="hidden"
+            name="department-id"
+            class="hidden-delete__department"
+          />
+          <div class="modal-delete-department__text"></div>
           <button class="delete-department">Confirmar</button>
         </dialog>
+
         <dialog class="modal-view__department">
           <div class="header-view__department">
             <span class="department-name"></span>
             <button class="close-view__department">X</button>
           </div>
-         
-          <div class="header-view__department" >
+
+          <div class="header-view__department">
             <div class="description-view__department">
               <span class="description-deartment"></span>
               <span class="company-name"></span>
             </div>
-           
+
             <div class="select-hire">
               <select name="" id="select-user">
                 <option value="">Selecionar usuário</option>
               </select>
-              <input type="hidden" name="hire-id" class="hidden-hire__user">
+              <input type="hidden" name="hire-id" class="hidden-hire__user" />
               <button class="hire-button">Contratar</button>
             </div>
-
           </div>
-         
-          <ul class="list-user__department">
-          </ul>
+
+          <ul class="list-user__department"></ul>
         </dialog>
       </section>
       <section class="section-user">
@@ -106,29 +146,88 @@
               <button class="button-close__user">X</button>
             </div>
             <div class="main-modal">
-              <select name="" id="select-modalite">
-                <option value="">Selecionar modalidade de trabalho</option>
-                <option value="home office">Home office</option>
-                <option value="presencial">Presencial</option>
-                <option value="hibrido">Hibrido</option>
+              <select name="kind_of_work" class="field" id="select-modality">
+                <option class="option-professional" value="">
+                  Selecionar modalidade de trabalho
+                </option>
+                <option
+                  class="option-professional"
+                  name="kind_of_work"
+                  value="home office"
+                >
+                  Home office
+                </option>
+                <option
+                  class="option-professional"
+                  name="kind_of_work"
+                  value="presencial"
+                >
+                  Presencial
+                </option>
+                <option
+                  class="option-professional"
+                  name="kind_of_work"
+                  value="hibrido"
+                >
+                  Hibrido
+                </option>
               </select>
-              <select class="field" name="professional_level" id="select-professional__leval">
-                <option value="">Selecionar nível profissional</option>
-                <option value="estágio">Estágio</option>
-                <option value="júnior">Júnior</option>
-                <option value="pleno">Pleno</option>
-                <option value="sênior">Sênior</option>
+              <select
+                class="field"
+                name="professional_level"
+                id="select-professional__level"
+              >
+                <option class="option-professional" value="">
+                  Selecionar nível profissional
+                </option>
+                <option
+                  class="option-professional"
+                  name="professional_level"
+                  value="estágio"
+                >
+                  Estágio
+                </option>
+                <option
+                  class="option-professional"
+                  name="professional_level"
+                  value="júnior"
+                >
+                  Júnior
+                </option>
+                <option
+                  class="option-professional"
+                  name="professional_level"
+                  value="pleno"
+                >
+                  Pleno
+                </option>
+                <option
+                  class="option-professional"
+                  name="professional_level"
+                  value="sênior"
+                >
+                  Sênior
+                </option>
               </select>
-              <button class="button-edite__user">Editar</button>
+              <input
+                type="hidden"
+                name="edit-user__id"
+                class="hidden-edit__user"
+              />
+              <button class="button-edit__user">Editar</button>
             </div>
-          </dialog>
-
           </div>
-          
+        </dialog>
+
         <dialog class="modal-delete__user">
           <button class="close-delete">X</button>
+          <div class="delete-user__text"></div>
           <button class="button-delete-user">Deletar</button>
-          <input type="hidden" name="delete-user__id" class="hidden-delete__user">
+          <input
+            type="hidden"
+            name="delete-user__id"
+            class="hidden-delete__user"
+          />
         </dialog>
       </section>
     </main>

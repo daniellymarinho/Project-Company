@@ -1,4 +1,4 @@
-import { getEmployeeInfo, verifyUser } from "./requests.js"
+import { getEmployeeInfo, verifyUser, listDepartmentEmployee } from "./requests.js"
 
 
 verifyUser().then(({ is_admin }) => {
@@ -73,3 +73,19 @@ function closeModalButton() {
 }
 
 logout()
+
+const mainPage = document.querySelector(".page-hires")
+
+function createDepartment({name, departments,}){
+  const companyName = document.createElement("span")
+  const departmentName = document.createElement("span")
+
+
+  companyName.innerText = name
+  departmentName.innerText = departments.name
+
+  mainPage.append(companyName, departmentName)
+
+}
+
+listDepartmentEmployee().then(createDepartment)
